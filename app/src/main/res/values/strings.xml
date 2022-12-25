@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Clock</string>
+    <string name="utility_code">Комунальний код</string>
+    <string name="add_string_text">Додайте адресу</string>
+    <string name="tab_utility_code">Комунальний код</string>
+    <string name="address">Адреса</string>
+    <string name="apartment">Квартира</string>
+    <string name="private_house">Приватний будинок</string>
+    <string name="add_utility_code">Додати комунальний код</string>
+    <string name="delete_utility_code">Видалити комунальний код</string>
+    <string name="order_utility_code">Замовити комунальний код</string>
+
 </resources>
