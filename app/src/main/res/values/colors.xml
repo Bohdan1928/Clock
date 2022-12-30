@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="rectangle_8">#426BF9</color>
     <color name="grey">#FF86878A</color>
-    <color name="warning_button">#FF6951</color>
+    <color name="warning_button">#F44336</color>
+    <color name="red">#E91E63</color>
 </resources>

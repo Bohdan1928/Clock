@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/rectangle_blue"/>
+    <item android:drawable="@drawable/user_icon"
+        android:bottom="7dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="7dp"/>
+</layer-list>

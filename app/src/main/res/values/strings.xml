@@ -1,13 +1,18 @@
 <resources>
+    <!-- Activity 7 -->
     <string name="app_name">Clock</string>
     <string name="utility_code">Комунальний код</string>
+    <string name="utilities">Комунальні послуги</string>
     <string name="add_string_text">Додайте адресу</string>
-    <string name="tab_utility_code">Комунальний код</string>
+    <string name="tab_utility_code">Назва об\'єкту</string>
     <string name="address">Адреса</string>
     <string name="apartment">Квартира</string>
     <string name="private_house">Приватний будинок</string>
     <string name="add_utility_code">Додати комунальний код</string>
     <string name="delete_utility_code">Видалити комунальний код</string>
     <string name="order_utility_code">Замовити комунальний код</string>
+    <string name="about_deleting">Для видалення адреси проведіть вправо на вибраному пункті. </string>
+    <string name="icon">icon</string>
+    <string name="city">Місто</string>
 
 </resources>
