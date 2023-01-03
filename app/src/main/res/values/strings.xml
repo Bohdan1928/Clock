@@ -14,5 +14,14 @@
     <string name="about_deleting">Для видалення адреси проведіть вправо на вибраному пункті. </string>
     <string name="icon">icon</string>
     <string name="city">Місто</string>
+    <string name="lviv">Львів</string>
+    <string name="lviv_watter">Львівводоканал</string>
+    <string name="lviv_heat">Львівтеплоенерго</string>
+    <string name="lviv_electricity">Львівенерго</string>
+    <string name="green_era">GreenEra</string>
+    <string name="lviv_elevator">Львів-Еко</string>
+    <string name="lviv_gas">ЛьвівГаз</string>
+    <string name="lviv_intercom">Оберіг</string>
+    <string name="lviv_osbb">ОСББ</string>
 
 </resources>

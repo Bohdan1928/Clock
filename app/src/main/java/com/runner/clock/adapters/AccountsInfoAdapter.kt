@@ -43,11 +43,8 @@ class AccountsInfoAdapter(
         val accountInfo: UtilityAccountInfo = accountInfoList[position]
 
         holder.tvName.text = accountInfo.name
-        holder.tvCity.text = accountInfo.city
-        holder.tvAddress.text =
-            accountInfo.city + ", " + accountInfo.address + ", " + accountInfo.numberApartment
-
-
+        holder.tvCity.text = accountInfo.city + ", "
+        holder.tvAddress.text = accountInfo.address + ", " + accountInfo.numberApartment
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, AccountInfo::class.java)

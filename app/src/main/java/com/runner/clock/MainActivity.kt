@@ -1,5 +1,6 @@
 package com.runner.clock
 
+import android.content.ContentValues
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.runner.clock.adapters.AccountsInfoAdapter
+import com.runner.clock.database.dbHelper.UtilitiesDbHelper
+import com.runner.clock.database.objectDB.UtilitiesInfoContract
 import com.runner.clock.databinding.ActivityMainBinding
+import com.runner.clock.objects.Utility
 import com.runner.clock.objects.UtilityAccountInfo
 
 
@@ -29,9 +33,9 @@ class MainActivity : AppCompatActivity() {
         val addressEdt = rootElement.addressEdt
         val apartmentNumberEdt = rootElement.apartmentNumberEdt
         val addUtilityCodeBtn = rootElement.addUtilityCodeBtn
-        val adapter = AccountsInfoAdapter(rootElement.root.context)
         val chbPrivateHouse = rootElement.chbPrivateHouse
 
+        val adapter = AccountsInfoAdapter(rootElement.root.context)
         accountsRecyclerView.adapter = adapter
 
         accountsRecyclerView.layoutManager = LinearLayoutManager(this)

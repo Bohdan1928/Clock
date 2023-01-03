@@ -6,8 +6,11 @@ import android.sax.RootElement
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.runner.clock.adapters.UtilitiesAdapter
+import com.runner.clock.constants.NameOfUtilitiesConst
+import com.runner.clock.database.dbHelper.UtilitiesDbHelper
 import com.runner.clock.databinding.ActivityAccountInfoBinding
 import com.runner.clock.databinding.ActivityMainBinding
+import com.runner.clock.objects.Utility
 
 class AccountInfo : AppCompatActivity() {
     private lateinit var rootElement: ActivityAccountInfoBinding
@@ -17,6 +20,8 @@ class AccountInfo : AppCompatActivity() {
         rootElement = ActivityAccountInfoBinding.inflate(layoutInflater)
         val view = rootElement.root
         setContentView(view)
+
+        val context = this
 
         val tvAccountName: TextView = rootElement.accountNameTv
         val tvAccountCity: TextView = rootElement.accountCityTv
@@ -35,5 +40,70 @@ class AccountInfo : AppCompatActivity() {
         tvAccountName.text = name.toString()
         tvAccountAddress.text = address.toString()
         tvAccountCity.text = city.toString()
+
+        val db = UtilitiesDbHelper(context)
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_watter),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.WATER_SUPPLY
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_heat),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.HEATING
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_electricity),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.ELECTRICITY
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.green_era),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.GARBAGE
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_elevator),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.ELEVATOR
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_gas),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.GAS_SUPPLY
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_intercom),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.INTERCOM
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv_osbb),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.RENT
+            )
+        )
+        db.insertData(
+            Utility(
+                getString(R.string.lviv),
+                getString(R.string.lviv),
+                NameOfUtilitiesConst.OTHER
+            )
+        )
     }
 }
