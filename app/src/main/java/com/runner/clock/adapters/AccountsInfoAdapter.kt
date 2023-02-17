@@ -10,14 +10,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.runner.clock.AccountInfo
 import com.runner.clock.R
-import com.runner.clock.objects.UtilityAccountInfo
+import com.runner.clock.objects.UtilityAddressAndInfo
 
 class AccountsInfoAdapter(
     private val context: Context,
 ) :
     RecyclerView.Adapter<AccountsInfoAdapter.ViewHolder>() {
 
-    private var accountInfoList = emptyList<UtilityAccountInfo>()
+    private var accountInfoList = emptyList<UtilityAddressAndInfo>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tv_name)
@@ -25,10 +25,10 @@ class AccountsInfoAdapter(
         val tvCity: TextView = itemView.findViewById(R.id.tv_city)
     }
 
-    fun update(utilityAccountInfo: UtilityAccountInfo): ArrayList<UtilityAccountInfo> {
-        accountInfoList = accountInfoList + utilityAccountInfo
+    fun update(utilityAddressAndInfo: UtilityAddressAndInfo): ArrayList<UtilityAddressAndInfo> {
+        accountInfoList = accountInfoList + utilityAddressAndInfo
         notifyDataSetChanged()
-        return accountInfoList as ArrayList<UtilityAccountInfo>
+        return accountInfoList as ArrayList<UtilityAddressAndInfo>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,7 +40,7 @@ class AccountsInfoAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val accountInfo: UtilityAccountInfo = accountInfoList[position]
+        val accountInfo: UtilityAddressAndInfo = accountInfoList[position]
 
         holder.tvName.text = accountInfo.name
         holder.tvCity.text = accountInfo.city + ", "

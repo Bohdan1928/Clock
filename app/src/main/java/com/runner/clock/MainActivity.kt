@@ -1,6 +1,5 @@
 package com.runner.clock
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,17 +7,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.runner.clock.adapters.AccountsInfoAdapter
-import com.runner.clock.database.dbHelper.UtilitiesDbHelper
-import com.runner.clock.database.objectDB.UtilitiesInfoContract
 import com.runner.clock.databinding.ActivityMainBinding
-import com.runner.clock.objects.Utility
-import com.runner.clock.objects.UtilityAccountInfo
-
+import com.runner.clock.objects.User
+import com.runner.clock.objects.UtilityAddressAndInfo
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rootElement: ActivityMainBinding
-    private lateinit var accountList: ArrayList<UtilityAccountInfo>
+    private lateinit var accountList: ArrayList<UtilityAddressAndInfo>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val context = view.context
         setContentView(view)
 
+        //Робота бази даних в автономному режимі
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         val accountsRecyclerView = rootElement.accountsRecyclerView
         val nameUtilityBillEdt = rootElement.nameUtilityBillEdt
         val cityEdt = rootElement.cityEdt
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                     if (chbPrivateHouse.isChecked) {
                         apartmentNumberEdt.text = null
                         accountList = adapter.update(
-                            UtilityAccountInfo(
+                            UtilityAddressAndInfo(
                                 nameUtilityBillEdt.text.toString(),
                                 cityEdt.text.toString(),
                                 addressEdt.text.toString(),
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                         )
                     } else if (!chbPrivateHouse.isChecked) {
                         accountList = adapter.update(
-                            UtilityAccountInfo(
+                            UtilityAddressAndInfo(
                                 nameUtilityBillEdt.text.toString(),
                                 cityEdt.text.toString(),
                                 addressEdt.text.toString(),
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 nameUtilityBillEdt.text.isEmpty() -> Toast.makeText(
-                    context, "Введіть комунальний код", Toast.LENGTH_SHORT
+                    context, "Введіть назву об'єкту", Toast.LENGTH_SHORT
                 ).show()
 
                 addressEdt.text.isEmpty() -> Toast.makeText(
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val deleteAccount: UtilityAccountInfo = accountList[viewHolder.adapterPosition]
+                val deleteAccount: UtilityAddressAndInfo = accountList[viewHolder.adapterPosition]
                 val position = viewHolder.adapterPosition
                 accountList.removeAt(position)
                 adapter.notifyItemRemoved(position)
