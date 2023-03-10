@@ -1,32 +1,27 @@
 package com.runner.clock
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.runner.clock.database.firebase.FirebaseAuthService
-import com.runner.clock.database.firebase.FirebaseDatabaseService
-import com.runner.clock.database.firebase.firebaseModule
+import com.google.firebase.database.DatabaseReference
+import com.runner.clock.data.database.firebase.FirebaseAuthService
 import com.runner.clock.databinding.ActivitySignUpBinding
 import com.runner.clock.objects.User
 import org.koin.android.ext.android.inject
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
 
 class SignUp : AppCompatActivity() {
     private lateinit var rootElement: ActivitySignUpBinding
-    private val database by inject<FirebaseDatabaseService>()
-    private val auth by inject<FirebaseAuthService>()
+    private val database: DatabaseReference by inject()
+    private var auth: FirebaseAuthService = FirebaseAuthService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         rootElement = ActivitySignUpBinding.inflate(layoutInflater)
         val view = rootElement.root
+        val context = view.context
         setContentView(view)
-        startKoin {
-            androidContext(this@SignUp)
-            modules(firebaseModule)
-        }
 
         val editTextNameOfUser = rootElement.nameOfUserEdt
         val editTextEmail = rootElement.emailEdt
@@ -35,42 +30,48 @@ class SignUp : AppCompatActivity() {
         val editTextRepeatPassword = rootElement.repeatPasswordEdt
         val buttonSignUp = rootElement.singUpBtn
 
-        buttonSignUp.setOnClickListener {
 
+        buttonSignUp.setOnClickListener {
             when {
                 editTextNameOfUser.text.isEmpty() ->
                     Toast.makeText(
-                        rootElement.root.context,
+                        context,
                         "Введіть ім'я",
                         Toast.LENGTH_SHORT
                     ).show()
                 editTextEmail.text.isEmpty() ->
                     Toast.makeText(
-                        rootElement.root.context,
+                        context,
                         "Введіть email",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                !(editTextEmail.text.toString().contains("@gmail.com")) ->
+                    Toast.makeText(
+                        context,
+                        "Введіть коректну поштову андресу",
                         Toast.LENGTH_SHORT
                     ).show()
                 editTextPhoneNumber.text.isEmpty() ->
                     Toast.makeText(
-                        rootElement.root.context,
+                        context,
                         "Введіть номер телефону",
                         Toast.LENGTH_SHORT
                     ).show()
                 editTextRepeatPassword.text.isEmpty() ->
                     Toast.makeText(
-                        rootElement.root.context,
+                        context,
                         "Введіть пароль повторно",
                         Toast.LENGTH_SHORT
                     ).show()
                 editTextPassword.text.isEmpty() ->
                     Toast.makeText(
-                        rootElement.root.context,
+                        context,
                         "Введіть пароль",
                         Toast.LENGTH_SHORT
                     ).show()
                 editTextPassword.text.toString() != editTextRepeatPassword.text.toString() ->
                     Toast.makeText(
-                        rootElement.root.context,
+                        context,
                         "Введені паролі не збігаються",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -85,7 +86,7 @@ class SignUp : AppCompatActivity() {
                         editTextPhoneNumber.text.toString(),
                         editTextPassword.text.toString()
                     )
-                    database.addUser(user)
+                    database.child("Users").push().setValue(user)
                     Log.d("SingUp", "User added to db")
                     auth.singUp(user.email.toString(), user.password.toString())
                     Log.d("SingUp", "User sing up")
@@ -95,6 +96,9 @@ class SignUp : AppCompatActivity() {
                     editTextPhoneNumber.text = null
                     editTextPassword.text = null
                     editTextRepeatPassword.text = null
+
+                    val intent = Intent(context, SignIn::class.java)
+                    context.startActivity(intent)
                 }
 
             }

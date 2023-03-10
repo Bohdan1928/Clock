@@ -24,11 +24,16 @@
     <string name="lviv_intercom">Оберіг</string>
     <string name="lviv_osbb">ОСББ</string>
     <string name="sign_up">Зареєструватись</string>
+    <string name="sign_in">Увійти</string>
     <string name="name_of_user">Ім\'я користувача*</string>
     <string name="email">Email*</string>
     <string name="phone_number">Телефон*</string>
     <string name="password">Пароль*</string>
     <string name="repeat_password">Повторити пароль*</string>
     <string name="registration">Реєстрація</string>
+    <string name="loss_pass">Забули пароль?</string>
+    <string name="login_or_email">Логін/Email</string>
+    <string name="password_sign_in">Пароль</string>
+    <string name="building_number">Номер будинку</string>
 
 </resources>

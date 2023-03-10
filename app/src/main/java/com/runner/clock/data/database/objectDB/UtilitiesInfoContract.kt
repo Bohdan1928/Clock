@@ -1,4 +1,4 @@
-package com.runner.clock.database.objectDB
+package com.runner.clock.data.database.objectDB
 
 import android.provider.BaseColumns
 

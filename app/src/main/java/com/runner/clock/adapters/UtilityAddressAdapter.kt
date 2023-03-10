@@ -8,27 +8,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
 import com.runner.clock.AccountInfo
 import com.runner.clock.R
 import com.runner.clock.objects.UtilityAddressAndInfo
 
-class AccountsInfoAdapter(
-    private val context: Context,
-) :
-    RecyclerView.Adapter<AccountsInfoAdapter.ViewHolder>() {
+class UtilityAddressAdapter :
+    RecyclerView.Adapter<UtilityAddressAdapter.ViewHolder>() {
+    private var accountInfoList = ArrayList<UtilityAddressAndInfo>()
 
-    private var accountInfoList = emptyList<UtilityAddressAndInfo>()
+    fun getList(): ArrayList<UtilityAddressAndInfo> {
+        return accountInfoList
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tv_name)
         val tvAddress: TextView = itemView.findViewById(R.id.tv_address)
         val tvCity: TextView = itemView.findViewById(R.id.tv_city)
+        val tvBuildingNumber: TextView = itemView.findViewById(R.id.tv_building_number)
     }
 
-    fun update(utilityAddressAndInfo: UtilityAddressAndInfo): ArrayList<UtilityAddressAndInfo> {
-        accountInfoList = accountInfoList + utilityAddressAndInfo
+    fun update(utilityAddressAndInfo: ArrayList<UtilityAddressAndInfo>): ArrayList<UtilityAddressAndInfo> {
+        accountInfoList.clear()
+        accountInfoList =
+            (accountInfoList + utilityAddressAndInfo) as ArrayList<UtilityAddressAndInfo>
         notifyDataSetChanged()
-        return accountInfoList as ArrayList<UtilityAddressAndInfo>
+        return accountInfoList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,15 +49,14 @@ class AccountsInfoAdapter(
 
         holder.tvName.text = accountInfo.name
         holder.tvCity.text = accountInfo.city + ", "
-        holder.tvAddress.text = accountInfo.address + ", " + accountInfo.numberApartment
-
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, AccountInfo::class.java)
-            intent.putExtra("tv_name", holder.tvName.text)
-            intent.putExtra("tv_address", holder.tvAddress.text)
-            intent.putExtra("tv_city", holder.tvCity.text)
-            context.startActivity(intent)
+        if (accountInfo.numberApartment != null) {
+            holder.tvAddress.text =
+                accountInfo.address + " " + accountInfo.buildingNumber + ", " + accountInfo.numberApartment
+        } else{
+            holder.tvAddress.text =
+                accountInfo.address + " " + accountInfo.buildingNumber + ", ПБ"
         }
+
     }
 
     override fun getItemCount(): Int {

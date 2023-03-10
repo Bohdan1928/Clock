@@ -1,11 +1,11 @@
-package com.runner.clock.database.dbHelper
+package com.runner.clock.data.database.dbHelper
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
-import com.runner.clock.database.objectDB.UtilitiesInfoContract
+import com.runner.clock.data.database.objectDB.UtilitiesInfoContract
 import com.runner.clock.objects.Utility
 
 

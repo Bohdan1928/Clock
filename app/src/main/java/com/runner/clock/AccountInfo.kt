@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.runner.clock.adapters.UtilitiesAdapter
 import com.runner.clock.constants.NameOfUtilitiesConst
-import com.runner.clock.database.dbHelper.UtilitiesDbHelper
+import com.runner.clock.data.database.dbHelper.UtilitiesDbHelper
 import com.runner.clock.databinding.ActivityAccountInfoBinding
 import com.runner.clock.objects.Utility
 
@@ -26,7 +26,7 @@ class AccountInfo : AppCompatActivity() {
         val tvAccountAddress: TextView = rootElement.accountAddressTv
 
         val accountInfoRecyclerView = rootElement.accountInfoRecyclerView
-        val adapter = UtilitiesAdapter(rootElement.root.context)
+        val adapter = UtilitiesAdapter()
         accountInfoRecyclerView.adapter = adapter
         accountInfoRecyclerView.layoutManager = LinearLayoutManager(this)
 

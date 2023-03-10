@@ -11,7 +11,7 @@ import com.runner.clock.R
 import com.runner.clock.constants.NameOfUtilitiesConst
 import com.runner.clock.objects.Utility
 
-class UtilitiesAdapter(private val context: Context) :
+class UtilitiesAdapter() :
     RecyclerView.Adapter<UtilitiesAdapter.ViewHolder>() {
     private val utilitiesList = listOf<Utility>()
 

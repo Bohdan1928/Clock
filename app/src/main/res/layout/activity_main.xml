@@ -51,8 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="42dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/recycler_1_view_bg"
                 android:elevation="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +69,7 @@
                 android:drawableStart="@drawable/credit_card"
                 android:hint="@string/tab_utility_code"
                 android:padding="16dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/accounts_recycler_view" />
@@ -80,12 +81,15 @@
                 android:layout_margin="16dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/edit_text_stroke"
-                android:drawableStart="@drawable/frame"
+                android:drawableStart="@drawable/city"
                 android:hint="@string/city"
                 android:padding="16dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name_utility_bill_edt" />
+                app:layout_constraintTop_toBottomOf="@id/name_utility_bill_edt"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/address_edt"
@@ -97,9 +101,25 @@
                 android:drawableStart="@drawable/location"
                 android:hint="@string/address"
                 android:padding="16dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/city_edt" />
+
+            <EditText
+                android:id="@+id/building_num_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/edit_text_stroke"
+                android:drawableStart="@drawable/frame"
+                android:hint="@string/building_number"
+                android:padding="16dp"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address_edt" />
 
             <EditText
                 android:id="@+id/apartment_number_edt"
@@ -113,9 +133,10 @@
                 android:hint="@string/apartment"
                 android:inputType="number"
                 android:padding="16dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/address_edt" />
+                app:layout_constraintTop_toBottomOf="@id/building_num_edt" />
 
             <CheckBox
                 android:id="@+id/chb_private_house"
@@ -142,13 +163,13 @@
                 android:id="@+id/about_deleting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="@string/about_deleting"
                 android:textColor="@color/warning_button"
                 android:textSize="12sp"
-                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/add_utility_code_btn" />
@@ -156,9 +177,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/about_deleting"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_deleting" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -166,8 +187,8 @@
         android:id="@+id/order_code_btn"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="@string/order_utility_code"
         android:background="@drawable/order_button_bg"
+        android:text="@string/order_utility_code"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
